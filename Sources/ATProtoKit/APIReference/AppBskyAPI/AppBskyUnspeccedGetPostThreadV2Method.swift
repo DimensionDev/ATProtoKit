@@ -12,7 +12,7 @@ import FoundationNetworking
 
 extension ATProtoKit {
 
-    public func getGetPostThreadV2(
+    public func getPostThreadV2(
         postURI anchor: String,
         branchingFactor: Int? = 1,
         below: Int? = 10,
