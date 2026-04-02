@@ -12,7 +12,7 @@ import FoundationNetworking
 
 extension ATProtoKit {
 
-    public func getGetPostThreadOtherV2(
+    public func getPostThreadOtherV2(
         postURI anchor: String,
     ) async throws -> AppBskyLexicon.Unspecced.GetPostThreadOtherV2Output {
         guard let session = try await self.getUserSession(),
