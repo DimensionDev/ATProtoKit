@@ -81,7 +81,7 @@ extension AppBskyLexicon.Unspecced {
         
         public let hiddenByThreadgate: Bool
         public let moreParents: Bool
-        public let moreReplies: Bool
+        public let moreReplies: Int
         public let mutedByViewer: Bool
         public let opThread: Bool
         public let post: AppBskyLexicon.Feed.PostViewDefinition
