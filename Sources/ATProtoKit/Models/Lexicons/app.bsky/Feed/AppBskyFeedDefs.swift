@@ -313,6 +313,20 @@ extension AppBskyLexicon.Feed {
         /// - Note: According to the AT Protocol specifications: "Unique identifier per request that may be
         /// passed back alongside interactions."
         public let requestID: String?
+        
+        public init(
+            post: PostViewDefinition,
+            reply: ReplyReferenceDefinition? = nil,
+            reason: ReasonUnion? = nil,
+            feedContext: String? = nil,
+            requestID: String? = nil
+        ) {
+            self.post = post
+            self.reply = reply
+            self.reason = reason
+            self.feedContext = feedContext
+            self.requestID = requestID
+        }
 
         public func encode(to encoder: any Encoder) throws {
             var container = encoder.container(keyedBy: CodingKeys.self)
