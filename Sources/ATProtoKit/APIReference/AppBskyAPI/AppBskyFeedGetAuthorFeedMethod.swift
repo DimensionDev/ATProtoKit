@@ -47,7 +47,15 @@ extension ATProtoKit {
         postFilter: AppBskyLexicon.Feed.GetAuthorFeed.Filter? = .postsWithReplies,
         shouldIncludePins: Bool? = false
     ) async throws -> AppBskyLexicon.Feed.GetAuthorFeedOutput {
-        guard let requestURL = URL(string: "\(self.pdsURL)/xrpc/app.bsky.feed.getAuthorFeed") else {
+        
+        let session = try? await self.getUserSession()
+        let keychain = sessionConfiguration?.keychainProtocol
+
+        try? await sessionConfiguration?.ensureValidToken()
+        let accessToken = try? await keychain?.retrieveAccessToken()
+        let sessionURL = session?.serviceEndpoint.absoluteString ?? self.pdsURL
+        
+        guard let requestURL = URL(string: "\(sessionURL)/xrpc/app.bsky.feed.getAuthorFeed") else {
             throw ATRequestPrepareError.invalidRequestURL
         }
 
@@ -80,11 +88,18 @@ extension ATProtoKit {
                 with: queryItems
             )
 
+            let _accessToken: String? = {
+                if let accessToken, !accessToken.isEmpty {
+                    return "Bearer \(accessToken)"
+                }
+                return nil
+            }()
             let request = apiClientService.createRequest(
                 forRequest: queryURL,
                 andMethod: .get,
                 acceptValue: "application/json",
-                contentTypeValue: nil
+                contentTypeValue: nil,
+                authorizationValue: _accessToken
             )
             let response = try await apiClientService.sendRequest(
                 request,
