@@ -24,7 +24,7 @@ extension ATProtoKit {
         let accessToken = try await keychain.retrieveAccessToken()
         let sessionURL = session.serviceEndpoint.absoluteString
 
-        guard let requestURL = URL(string: "\(sessionURL)/xrpc/app.bsky.unspecced.getPostThreadV2") else {
+        guard let requestURL = URL(string: "\(sessionURL)/xrpc/app.bsky.unspecced.getPostThreadOtherV2") else {
             throw ATRequestPrepareError.invalidRequestURL
         }
 
