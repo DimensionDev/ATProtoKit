@@ -177,6 +177,10 @@ extension ComAtprotoLexicon.Admin {
             case type = "$type"
             case repositoryDID = "did"
         }
+        
+        public init(repositoryDID: String) {
+            self.repositoryDID = repositoryDID
+        }
     }
 
     /// A definition model for a blob reference.
