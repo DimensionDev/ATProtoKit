@@ -66,6 +66,40 @@ extension AppBskyLexicon.Feed {
         /// - Note: According to the AT Protocol specifications: "Debug information for internal development."
         public let debug: UnknownType?
         
+        public init(
+            uri: String,
+            cid: String,
+            author: AppBskyLexicon.Actor.ProfileViewBasicDefinition,
+            record: UnknownType,
+            embed: EmbedUnion? = nil,
+            replyCount: Int? = 0,
+            bookmarkCount: Int? = 0,
+            repostCount: Int? = 0,
+            likeCount: Int? = 0,
+            quoteCount: Int? = 0,
+            indexedAt: Date,
+            viewer: ViewerStateDefinition?,
+            labels: [ComAtprotoLexicon.Label.LabelDefinition]?,
+            threadgate: ThreadgateViewDefinition? = nil,
+            debug: UnknownType? = nil
+        ) {
+            self.uri = uri
+            self.cid = cid
+            self.author = author
+            self.record = record
+            self.embed = embed
+            self.replyCount = replyCount
+            self.bookmarkCount = bookmarkCount
+            self.repostCount = repostCount
+            self.likeCount = likeCount
+            self.quoteCount = quoteCount
+            self.indexedAt = indexedAt
+            self.viewer = viewer
+            self.labels = labels
+            self.threadgate = threadgate
+            self.debug = debug
+        }
+
         public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
 
@@ -329,6 +363,20 @@ extension AppBskyLexicon.Feed {
         /// - Note: According to the AT Protocol specifications: "Unique identifier per request that may be
         /// passed back alongside interactions."
         public let requestID: String?
+        
+        public init(
+            post: PostViewDefinition,
+            reply: ReplyReferenceDefinition? = nil,
+            reason: ReasonUnion? = nil,
+            feedContext: String? = nil,
+            requestID: String? = nil
+        ) {
+            self.post = post
+            self.reply = reply
+            self.reason = reason
+            self.feedContext = feedContext
+            self.requestID = requestID
+        }
 
         public init(post: PostViewDefinition, reply: ReplyReferenceDefinition? = nil, reason: ReasonUnion? = nil, feedContext: String? = nil, requestID: String? = nil) {
             self.post = post
