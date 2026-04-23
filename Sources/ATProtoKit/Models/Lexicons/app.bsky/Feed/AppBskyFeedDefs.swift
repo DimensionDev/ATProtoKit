@@ -378,13 +378,6 @@ extension AppBskyLexicon.Feed {
             self.requestID = requestID
         }
 
-        public init(post: PostViewDefinition, reply: ReplyReferenceDefinition? = nil, reason: ReasonUnion? = nil, feedContext: String? = nil, requestID: String? = nil) {
-            self.post = post
-            self.reply = reply
-            self.reason = reason
-            self.feedContext = feedContext
-            self.requestID = requestID
-        }
         public init(from decoder: any Decoder) throws {
             let container = try decoder.container(keyedBy: CodingKeys.self)
             self.post = try container.decode(AppBskyLexicon.Feed.PostViewDefinition.self, forKey: .post)
