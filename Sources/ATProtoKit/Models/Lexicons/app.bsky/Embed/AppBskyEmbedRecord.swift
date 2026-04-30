@@ -243,7 +243,9 @@ extension AppBskyLexicon.Embed {
 
             public func encode(to encoder: any Encoder) throws {
                 var container = encoder.container(keyedBy: CodingKeys.self)
-
+                
+                try container.encode(self.type, forKey: .type)
+                
                 try container.encode(self.uri, forKey: .uri)
                 try container.encode(self.cid, forKey: .cid)
                 try container.encode(self.author, forKey: .author)
